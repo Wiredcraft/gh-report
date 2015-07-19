@@ -2,13 +2,13 @@
 # Default configuration settings for the GitHub Reports application
 
 # Whether to run the application in debug mode
-DEBUG = True
+DEBUG=True
 
 # The OAUTH token should be replaced with an appropriate token to access the GitHub
 # API (please see https://developer.github.com/guides/basics-of-authentication/ for more
 # information about requesting one from GitHub)
 
-OAUTH_TOKEN = b736b1b52904e45adfd58d076f2a6ef514fb7a5f
+OAUTH_TOKEN="b736b1b52904e45adfd58d076f2a6ef514fb7a5f"
 
 # The repository to request stats for
-REPO_NAME = django/django
+REPO_NAME="django/django"

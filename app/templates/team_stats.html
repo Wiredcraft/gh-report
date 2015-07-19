@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="content-wrapper">
+  <h2>{{ org }}</h2>
+  {% for username, stats in most_active %}
+    <li><a href="http://github.com/{{ username }}">{{ username }}</a>:
+    ({{ stats.number_of_commits }} commits, {{ stats.additions }} additions,
+      {{ stats.deletions }} deletions, {{ stats.changes }} total changes)
+    </li>
+  {% endfor %}
+</div>
+{% endblock %}

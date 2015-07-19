@@ -1,10 +1,8 @@
-"""
-Keeps record of the commit statistics for a given member
-"""
+
 from app.utils import Struct
 
-
 class MemberCommitStats(object):
+    """ Keeps record of the commit statistics for a given member """
     def __init__(self, commits):
         self.number_of_commits = len(commits)
         self.additions = sum(map(lambda commit: commit.stats.additions, commits))
@@ -16,15 +14,14 @@ class MemberCommitStats(object):
             return obj
         else:
             internal_dict = {'number_of_commits': self.number_of_commits + obj.number_of_commits,\
-                         'additions': self.total_additions + obj.total_additions,\
-                         'deletions': self.total_deletions + obj.total_deletions,\
-                         'changes': self.total_changes + obj.total_changes}
+                         'additions': self.additions + obj.additions,\
+                         'deletions': self.deletions + obj.deletions,\
+                         'changes': self.changes + obj.changes}
             return Struct(**internal_dict)
 
-"""
-Keeps record of the issue-related statistics for a given member
-"""
+
 class MemberIssueStats(object):
+    """ Keeps record of the issue-related statistics for a given member """
     def __init__(self):
         self.created = ""
         self.commented = ""
