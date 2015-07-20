@@ -1,12 +1,34 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="content-wrapper">
-  <h2>{{ org }}</h2>
-  {% for username, stats in most_active %}
+  <h2>Organization: {{ org.org_name }}</h2>
+  <p>{{ org.number_of_committers }} contributors between </p>
+
+  <h3>Most Active Users</h3>
+  <ul>
+  {% for username, stats in org.sorted_committers.most_active %}
     <li><a href="http://github.com/{{ username }}">{{ username }}</a>:
     ({{ stats.number_of_commits }} commits, {{ stats.additions }} additions,
       {{ stats.deletions }} deletions, {{ stats.changes }} total changes)
     </li>
   {% endfor %}
+  </ul>
+
+  <h3>Repositories</h3>
+  <ul>
+    {% for repo in org.repo_stats %}
+    <li>{{ repo.name }} ({{ repo.number_of_committers }} contributors):
+    <ul>
+      {% for username, stats in repo.sorted_committers.most_active %}
+        <li><a href="http://github.com/{{ username }}">{{ username }}</a>:
+        ({{ stats.number_of_commits }} commits, {{ stats.additions }} additions,
+          {{ stats.deletions }} deletions, {{ stats.changes }} total changes)
+        </li>
+      {% endfor %}
+    </ul>
+    </li>
+    {% endfor %}
+  </ul>
+
 </div>
 {% endblock %}
