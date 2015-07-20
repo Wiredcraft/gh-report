@@ -12,4 +12,5 @@ To do:
 - improve UI
 - add in functionality to add and list repositories and organizations
 - add statistics for issues
+- add database to support faster querying of aggregated statistics
 - unit tests
