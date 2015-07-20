@@ -16,10 +16,13 @@ class RepositoryStats(object):
         
     def load_commits(self, since_time):
         commits_per_user = defaultdict(list)
-        for commit in self.repo.get_commits(since=datetime.strptime(since_time, "%Y-%m-%d %H:%M:%S")):
-            commits_per_user[commit.committer.login].append(commit)
-        for name in commits_per_user.keys():
-            commits_per_user[name] = MemberCommitStats(commits_per_user[name])
+        try:
+            for commit in self.repo.get_commits(since=datetime.strptime(since_time, "%Y-%m-%d %H:%M:%S")):
+                commits_per_user[commit.committer.login].append(commit)
+            for name in commits_per_user.keys():
+                commits_per_user[name] = MemberCommitStats(commits_per_user[name])
+        except:
+            pass
         return commits_per_user
 
     def load_issues(self, since_time):

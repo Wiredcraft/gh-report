@@ -35,7 +35,7 @@ def load_github_oauth(app):
     ghauth = oauth.remote_app('github',
         consumer_key=app.config['GITHUB_KEY'],
         consumer_secret=app.config['GITHUB_SECRET'],
-        request_token_params={'scope': 'user:email'},
+        request_token_params={'scope': 'public_repo,repo,read:org'},
         base_url='https://api.github.com/',
         request_token_url=None,
         access_token_method='POST',
