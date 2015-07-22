@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Pies</title>
+  <title>GitHub Reports</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -29,13 +29,25 @@
 
 </head>
 <body>
-
 <nav class="navbar">
   <a href="/about" class="navbar-link">Add</a>
   <a href="/projects" class="navbar-link">List</a>
 </nav>
 
 <div class="container">
+
+<div class="row">
+    <div class="nine columns">
+      <h2>GitHub Reports</h2>
+    </div>
+    <div class="three columns">
+      {% if username is defined %}
+        <p>Logged in as {{ username }}</p>
+      {% else %}
+        <p>Not logged in. Please <a href="{{ url_for('auth.login') }}">sign in</a>.</p>
+      {% endif %}
+    </div>
+</div>
 <div class="row">
   <div class="eight columns">
 

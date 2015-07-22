@@ -1,6 +1,8 @@
+__package__ = 'app'
+
 from flask import Flask, g, session
-from .config import GITHUB_SESSION_TOKEN
-from .extensions import oauth
+from .configuration import GITHUB_SESSION_TOKEN
+from .extensions import oauth, db
 from modules.organizations.views import orgs
 from modules.auth.views import auth
 
@@ -28,7 +30,7 @@ def load_config(app):
 
 def load_extensions(app):
     """Configure extensions for app"""
-    #db.init_app(app)
+    db.init_app(app)
     oauth.init_app(app)
 
 def load_github_oauth(app):

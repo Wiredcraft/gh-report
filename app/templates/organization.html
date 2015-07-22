@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="content-wrapper">
+  <h2>Organization: {{ org.org_name }}</h2>
+  <p>{{ active_users }} active users between {{ org.since }} and {{ org.until }}</p>
+
+  <h3>Most Active Users Overall</h3>
+  <ol>
+  {% for stat in org.activity_per_user %}
+    <li><a href="http://github.com/{{ stat.username }}">{{ stat.username }}</a>:
+      ({{ stat.activity_score_normalized }}: activity score, based on {{ stat.commits }} commits, {{ stat.adds }} additions,
+      {{ stat.deletes }} deletions, {{ stat.changes }} lines of code changed and {{ stat.issues }} issues created)
+    </li>
+  {% endfor %}
+  </ol>
+
+  <h3>Repositories</h3>
+  {% for repo, stats in org.activity_per_user_and_repo.items() %}
+    <div>
+      <b>{{ repo }}</b>
+      <ol>
+      {% for stat in stats %}
+        <li><a href="http://github.com/{{ stat.username }}">{{ stat.username }}</a>:
+          ({{ stat.commits }} commits, {{ stat.adds }} additions,
+          {{ stat.deletes }} deletions, {{ stat.changes }} lines of code changed and {{ stat.issues }} issues created)
+        </li>
+      {% endfor %}
+      </ol>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

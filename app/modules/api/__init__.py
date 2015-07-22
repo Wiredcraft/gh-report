@@ -1,3 +1,1 @@
 from org_stats import OrganizationStats
-from repo_stats import RepositoryStats
-from stats import MemberCommitStats, MemberIssueStats

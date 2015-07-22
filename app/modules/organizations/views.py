@@ -1,19 +1,28 @@
-from flask import Blueprint, render_template, current_app, request, flash, g
-from github import Github
-from app.modules.api import OrganizationStats
+from flask import Blueprint, render_template, current_app, request, g, redirect, url_for
+from app.extensions import db
 from app.modules.auth.views import get_github
+from app.utils import login_required
+from models import OrgDetails
 
 orgs = Blueprint('organizations', __name__, url_prefix='/organizations')
 
 @orgs.route('/add', methods=['POST'])
+@login_required
 def add():
-    pass
+    if request.args.get('name') != None:
+        org = OrgDetails()
+        org.org_name = request.args.get('name')
+        org.username = g._user.login
+        db.session.add(org)
+        db.session.commit()
+        redirect(url_for('auth.index'))
+    else:
+        return render_template('add.html')
 
-@orgs.route('/team', methods=['GET'])
-def team():
+@orgs.route('/<org_name>', methods=['GET'])
+#@login_required
+def view(org_name):
     get_github()
-    name = request.args.get('id')
-    org = OrganizationStats(name)
-    most_active = org.sorted_committers.get_most_active(10)
-    print most_active
-    return render_template('team_stats.html', org=org)
+    from app.modules.api import OrganizationStats
+    org = OrganizationStats(org_name)
+    return render_template('organization.html', org=org, active_users=len(org.activity_per_user))
