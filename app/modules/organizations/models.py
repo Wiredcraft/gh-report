@@ -74,3 +74,8 @@ class OrgReports(db.Model):
     username = Column(db.String)
     org_name = Column(db.String, primary_key=True)
     timestamp = Column(db.DateTime, primary_key=True)
+
+    def __init__(self, username, org_name, timestamp):
+        self.username = username
+        self.org_name = org_name
+        self.timestamp = timestamp

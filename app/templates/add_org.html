@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="content-wrapper">
+    <h4>Add Organization</h4>
+    <form action="{{ url_for('organizations.add') }}" method="POST">
+        <input type="text" name="org_name" />
+        <input type="submit" name="submit" />
+    </form>
+</div>
+{% endblock %}
