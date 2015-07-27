@@ -52,8 +52,5 @@ def authorized():
         return render_template('index.html', error=error)
 
     session[GITHUB_SESSION_TOKEN] = (resp['access_token'], '')
-    #user = get_github_oauth().get('user')
-    #session['user'] = jsonify(user.data)
-
     flash('Successfully logged in.')
     return redirect(url_for('auth.index'))

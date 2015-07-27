@@ -19,27 +19,23 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="/static/normalize.css">
-  <link rel="stylesheet" href="/static/skeleton.css">
-  <link rel="stylesheet" href="/static/custom.css">
+  <link rel="stylesheet" href="/static/css/skeleton.css">
+  <link rel="stylesheet" href="/static/css/charts.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
-
+  <script type="text/javascript">
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
+  <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 </head>
 <body>
-<nav class="navbar">
-  <a href="/about" class="navbar-link">Add</a>
-  <a href="/projects" class="navbar-link">List</a>
-</nav>
-
 <div class="container">
 
-<div class="row">
-    <div class="nine columns">
-      <h2>GitHub Reports</h2>
-    </div>
+<!--<div class="row">
     <div class="three columns">
       {% if username is defined %}
         <p>Logged in as {{ username }}</p>
@@ -47,13 +43,10 @@
         <p>Not logged in. Please <a href="{{ url_for('auth.login') }}">sign in</a>.</p>
       {% endif %}
     </div>
-</div>
+</div>-->
 <div class="row">
-  <div class="eight columns">
-
   {% block body %}{% endblock %}
 
-  </div>
 </div>
 </div>
 </body></html>
