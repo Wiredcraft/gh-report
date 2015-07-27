@@ -1,5 +1,4 @@
-from flask import Blueprint, session, render_template, url_for, redirect, request, jsonify, g, current_app, flash
-#from flask_login import login_required, login_user, current_user, logout_user, confirm_login, login_fresh
+from flask import Blueprint, session, render_template, url_for, redirect, request, g, flash
 from github import Github
 from app.configuration import GITHUB_SESSION_TOKEN
 from app.extensions import oauth, db

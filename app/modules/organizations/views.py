@@ -1,9 +1,6 @@
-from flask import Blueprint, render_template, current_app, request, g, redirect, url_for, jsonify
-from app.extensions import db
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from app.modules.auth.views import get_github, get_github_oauth
 from app.utils import login_required
-from models import OrgReports
-from datetime import date
 
 orgs = Blueprint('organizations', __name__, url_prefix='/organizations')
 

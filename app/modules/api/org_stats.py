@@ -114,7 +114,6 @@ class OrganizationStats(object):
     def create_repo_dict(self, lst):
         return {item[0]: item[1:] for item in lst}
 
-
     def get_repositories(self):
         commits = self.create_repo_dict(db.session.query(Commit.repo, func.count(Commit.sha), func.sum(Commit.changes))\
             .filter(Commit.org.like(self.org_name))\
@@ -170,7 +169,7 @@ class OrganizationStats(object):
             activity[i].changes_score = activity[i].normalize(activity, lambda x: x.changes)
             activity[i].issues_score = activity[i].normalize(activity, lambda x: x.issues)
             activity[i].issue_comments_score = activity[i].normalize(activity, lambda x: x.issue_comments)
-            activity[i].activity_score = (activity[i].changes_score + activity[i].issues_score + activity[i].issue_comments_score)
+            activity[i].activity_score = (activity[i].changes + activity[i].issues + activity[i].issue_comments)
 
         total_changes = float(sum(map(lambda x: x.changes, activity)))
         total_issues = float(sum(map(lambda x: x.issues, activity)))

@@ -1,3 +1,5 @@
+import os
+
 __package__ = 'app'
 
 from flask import Flask, g, session
@@ -26,7 +28,7 @@ def load_config(app):
     """Load config from file (default) or from the env-set location of the config file."""
 
     app.config.from_pyfile('config/gh-report.default.settings', silent=True)
-    #app.config.from_envvar('GH_REPORT_SETTINGS')
+
 
 def load_extensions(app):
     """Configure extensions for app"""

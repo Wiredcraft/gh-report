@@ -1,14 +1,13 @@
 # gh-report
 Github reporting service
 
-__Discussion about requirements in the issue [#1](https://github.com/Wiredcraft/gh-report/issues/1).__
+__Discussion about requirements in issues [#1](https://github.com/Wiredcraft/gh-report/issues/1) and  [#4](https://github.com/Wiredcraft/gh-report/issues/4)__ 
 
-Functionality implemented so far:
-- user login to Github for authentication
-- commits/lines of code/issues statistics for users at the repository and organization levels
-- basic UI
-- add database to support faster querying of aggregated statistics
+### Local Setup
 
-To do:
-- improve UI
-- unit tests
+1. Clone with ``git clone git@github.com:Wiredcraft/gh-report.git``.
+2. Install all Python libraries with ``pip install -r requirements.txt``.
+3. Set up database using ``python init_db.py``. Then move it to the right location (per default configuration) ``mv app.sqlite app/``
+4. Run locally using ``python run.py`` and view the running implementation at http://127.0.0.1:5000/ 
+
+
