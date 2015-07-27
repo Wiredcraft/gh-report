@@ -158,9 +158,9 @@ class OrganizationStats(object):
                                       commit_count=commit_repos[user][0] if user in commit_repos else 0,\
                                       issue_count=issue_repos[user][0] if user in issue_repos else 0,\
                                       issue_comments=issue_comment_repos[user][0] if user in issue_comment_repos else 0)
-                    user_activity.percent_changes = user_activity.changes/float(repo.changes)
-                    user_activity.percent_issues = user_activity.issues/float(repo.issues)
-                    user_activity.percent_issue_comments = user_activity.issue_comments/float(repo.issue_comments)
+                    user_activity.percent_changes = user_activity.changes/float(repo.changes) if repo.changes != 0 else 0
+                    user_activity.percent_issues = user_activity.issues/float(repo.issues) if repo.issues != 0 else 0
+                    user_activity.percent_issue_comments = user_activity.issue_comments/float(repo.issue_comments) if repo.issue_comments != 0 else 0
                     repo_users[repo.name].append(user_activity)
         return repo_users
 
