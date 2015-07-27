@@ -22,7 +22,10 @@ class OrganizationStats(object):
         self.since = (date.today() - timedelta(days=7))
         self.until = date.today()
 
-        org_report = OrgReports(org_name=self.org_name, timestamp=self.until.strftime("%Y-%m-%d %H:%M:%S.000000"))
+        org_report = OrgReports(username=get_github_oauth().get('user').data['login'],\
+                                org_name=self.org_name,\
+                                timestamp=self.until.strftime("%Y-%m-%d %H:%M:%S.000000"))
+
         if org_report.has_current_data() == False:
             self._load_activity_from_api()
 
